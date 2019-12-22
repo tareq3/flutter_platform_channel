@@ -53,18 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> getResponseFromNativeCode() async{
 
     print("called");
-    String response="";
-    try{
-      final String result= await platform.invokeMethod('helloFromNativeCode');
-      response= result;
-    } on PlatformException catch (e){
-      response = "Failed to Invoke: '${e.message}'.";
-    }
 
-    setState(() {
-      _responseFromNativeCode= response;
-    });
+    await platform.invokeMethod("helloFromNativeCode");
+
   }
+
 
   @override
   Widget build(BuildContext context) {

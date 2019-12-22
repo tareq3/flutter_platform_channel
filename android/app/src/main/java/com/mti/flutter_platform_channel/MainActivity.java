@@ -1,5 +1,6 @@
 package com.mti.flutter_platform_channel;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import io.flutter.app.FlutterActivity;
@@ -17,6 +18,7 @@ public class MainActivity extends FlutterActivity {
     GeneratedPluginRegistrant.registerWith(this);
     new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler((methodCall, result) -> {
       if(methodCall.method.equals("helloFromNativeCode")){
+        startActivity( new Intent(this, CustomActivity.class));
         String greeting= helloFromNativeCode();
         result.success(greeting);
       }
